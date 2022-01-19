@@ -7,7 +7,7 @@ C++ code to compute threshold crossings on a multichannel data stream and align 
 ```
 mkdir -p build/release
 cd build/release
-cmake -G "Unix Makefiles" -DBUILD_PLEXON=1 -DCMAKE_BUILD_TYPE=Release ../..
+cmake -G "Unix Makefiles" -DCMAKE_BUILD_TYPE=Release ../..
 make
 make install  # or sudo make install if on Unix
 ```
