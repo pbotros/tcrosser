@@ -1,4 +1,4 @@
-set(CMAKE_CXX_STANDARD 14)
+set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_VERBOSE_MAKEFILE TRUE)
 set(CMAKE_WINDOWS_EXPORT_ALL_SYMBOLS ON)
 
@@ -33,7 +33,7 @@ target_include_directories(
         tcrosser
         INTERFACE $<BUILD_INTERFACE:${${PROJECT_NAME}_SOURCE_DIR}/src/include>
         $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>)
-target_compile_features(tcrosser INTERFACE cxx_std_14)
+target_compile_features(tcrosser INTERFACE cxx_std_17)
 
 
 install(TARGETS tcrosser
@@ -45,8 +45,7 @@ install(DIRECTORY ${PROJECT_SOURCE_DIR}/include/ DESTINATION include)
 
 add_executable(tcrosser_test tcrosser_test.cpp)
 add_dependencies(tcrosser_test tcrosser)
-target_compile_features(tcrosser_test PRIVATE cxx_std_14)
-target_include_directories(tcrosser_test SYSTEM PUBLIC ${INCLUDE_DIRS})
+target_compile_features(tcrosser_test PRIVATE cxx_std_17)
 target_link_libraries(tcrosser_test tcrosser gtest gtest_main)
 add_test(NAME tcrosser_test COMMAND tcrosser_test)
 
@@ -61,3 +60,6 @@ endif()
 target_compile_options(tcrosser_test PUBLIC "$<$<CONFIG:DEBUG>:${MY_CXX_DEBUG_OPTIONS}>")
 target_compile_options(tcrosser_test PUBLIC "$<$<CONFIG:RELEASE>:${MY_CXX_RELEASE_OPTIONS}>")
 
+add_executable(tcrosser_main tcrosser_main.cpp)
+add_dependencies(tcrosser_main tcrosser)
+target_compile_features(tcrosser_main PRIVATE cxx_std_17)
